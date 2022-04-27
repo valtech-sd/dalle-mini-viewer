@@ -57,22 +57,27 @@ export default function Home(props) {
   // }, []);
   console.log(props);
   return (
-    <div
-      style={{
-        position: "absolute",
-        left: "50%",
-        top: "50%",
-        transform: "translate(-50%, -50%)",
-      }}
-    >
-      <img
-        src={props.imageSrc}
+    <>
+      <Head>
+        <meta httpEquiv="Refresh" content="120" />
+      </Head>
+      <div
         style={{
-          height: "800px",
-          width: "800px",
+          position: "absolute",
+          left: "50%",
+          top: "50%",
+          transform: "translate(-50%, -50%)",
         }}
-      />
-      HI
-    </div>
+      >
+        <img
+          src={props.imageSrc}
+          style={{
+            height: "800px",
+            width: "800px",
+          }}
+        />
+        HI
+      </div>
+    </>
   );
 }
