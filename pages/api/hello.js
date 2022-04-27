@@ -1,69 +1,52 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import JsonBigint from "json-bigint";
-import { Cloudinary } from "@cloudinary/url-gen";
+import cloudinary from "cloudinary";
 
 export default async function handler(req, res) {
-  cloudinary.config({
-    cloud_name: "detzng4ks",
-    api_key: "884299288848248",
-    api_secret: "AUB676yF644mn8O771ztWambF9A",
-  });
+  // cloudinary.config({
+  //   cloud_name: "detzng4ks",
+  //   api_key: "884299288848248",
+  //   api_secret: "AUB676yF644mn8O771ztWambF9A",
+  // });
+  console.log("HIII");
 
-  const REQUEST_TIMEOUT_SEC = 300000;
+  // const REQUEST_TIMEOUT_SEC = 300000;
 
   const queryStartTime = new Date();
-  const response = await Promise.race([
-    (
-      await fetch("http://52.52.59.188:8080" + `/dalle`, {
-        method: "POST",
-        headers: {
-          "Bypass-Tunnel-Reminder": "go",
-          mode: "no-cors",
-        },
-        body: JSON.stringify({
-          text: "mickey mouse eating a banana",
-          num_images: 1,
-        }),
-      }).then((response) => {
-        if (!response.ok) {
-          throw Error("error!!!", JSON.stringify(response.statusText));
-        }
-        return response;
-      })
-    ).text(),
-    new Promise((_, reject) =>
-      setTimeout(() => reject(new Error("Timeout")), REQUEST_TIMEOUT_SEC)
-    ),
-  ]);
+  fetch("http://52.52.59.188:8080" + `/dalle`, {
+    method: "POST",
+    headers: {
+      "Bypass-Tunnel-Reminder": "go",
+      mode: "no-cors",
+    },
+    body: JSON.stringify({
+      text: "donald duck eating a banana",
+      num_images: 1,
+    }),
+  });
 
-  const imageData = JsonBigint.parse(response);
-  const fullImageData = `data:image/png;base64,${imageData}`;
+  // const imageData = JsonBigint.parse(response);
+  // const fullImageData = `data:image/png;base64,${imageData}`;
 
   // const imageData = data:image/png;base64,${JsonBigint.parse(
   //   response["generatedImgs"]
   // )}`;
   // console.log("imageData", imageData);
 
-  cloudinary.v2.uploader.upload(
-    fullImageData,
-    {
-      folder: "dalle-mini",
-      width: 1200,
-      height: 1200,
-      data: { metadata: "text_prompt=mickey mouse eating a banana" },
-    },
-    function (error, result) {
-      console.log("cloudinary response", result);
-    }
-  );
+  // cloudinary.v2.uploader.upload(
+  //   fullImageData,
+  //   {
+  //     folder: "dalle-mini",
+  //     width: 1200,
+  //     height: 1200,
+  //     metadata: "mickey mouse eating a banana",
+  //   },
+  //   function (error, result) {
+  //     console.log("cloudinary response", result);
+  //   }
+  // );
 
-  res.status(200).send({
-    executionTime:
-      Math.round(
-        ((new Date() - queryStartTime) / 1000 + Number.EPSILON) * 100
-      ) / 100,
-    generatedImgs: fullImageData,
-  });
+  res.status(200).send();
 
   // try {
   //   const result = await fetch("http://52.52.59.188:8080" + `/dalle`, {
