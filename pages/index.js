@@ -38,7 +38,7 @@ export default function Home(props) {
   return (
     <>
       <Head>
-        <meta httpEquiv="Refresh" content="120" />
+        <meta httpEquiv="Refresh" content="3600" />
       </Head>
       <div
         style={{
