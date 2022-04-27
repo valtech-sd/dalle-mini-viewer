@@ -15,37 +15,24 @@ export async function getServerSideProps(context) {
   const finalImage = await cloudinary.v2.search
     .expression("folder=dalle-mini")
     .sort_by("uploaded_at", "desc")
+    .with_field("context")
     .execute()
     .then((result) => {
-      return result.resources[0].url;
+      console.log("RES");
+      return {
+        src: result.resources[0].url,
+        alt: result.resources[0].context.alt,
+      };
     });
   console.log(finalImage);
 
   return {
-    props: { imageSrc: finalImage }, // will be passed to the page component as props
+    props: { imageSrc: finalImage.src, description: finalImage.alt }, // will be passed to the page component as props
   };
 }
 
 export default function Home(props) {
   const [recipeTitle, setRecipeTitle] = useState("");
-
-  useEffect(() => {
-    fetch(
-      `https://api.spoonacular.com/recipes/random?&number=1&apiKey=957083af550c433a81b9127d40cf869e`,
-      {
-        method: "GET",
-      }
-    )
-      .then((response) => response.json())
-      .then((data) => {
-        if (data) {
-          setRecipeTitle(data.recipes.recipes[0].title);
-        }
-      })
-      .catch(() => {
-        console.log("error");
-      });
-  }, []);
 
   console.log(props);
   return (
@@ -68,7 +55,9 @@ export default function Home(props) {
             width: "800px",
           }}
         />
-        HI
+        <h1 style={{ color: "white", textAlign: "center" }}>
+          {props.description}
+        </h1>
       </div>
     </>
   );
