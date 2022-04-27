@@ -3,15 +3,6 @@ import JsonBigint from "json-bigint";
 import cloudinary from "cloudinary";
 
 export default async function handler(req, res) {
-  // cloudinary.config({
-  //   cloud_name: "detzng4ks",
-  //   api_key: "884299288848248",
-  //   api_secret: "AUB676yF644mn8O771ztWambF9A",
-  // });
-  console.log("HIII");
-
-  // const REQUEST_TIMEOUT_SEC = 300000;
-
   const characters = [
     "Superman",
     "Mickey Mouse",

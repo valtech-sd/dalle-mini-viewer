@@ -8,7 +8,7 @@ export async function getServerSideProps(context) {
   let image;
   cloudinary.config({
     cloud_name: "detzng4ks",
-    api_key: "884299288848248",
+    api_key: process.env.API_KEY_CLOUDINARY,
     api_secret: "AUB676yF644mn8O771ztWambF9A",
   });
 
