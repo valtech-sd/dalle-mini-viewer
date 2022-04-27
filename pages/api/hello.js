@@ -163,7 +163,7 @@ export default async function handler(req, res) {
       mode: "no-cors",
     },
     body: JSON.stringify({
-      text: `${randomCharacter} eating ${recipe} at ${randomLocation}`,
+      text: `${randomCharacter} walking in ${randomLocation}`,
       num_images: 1,
     }),
   });
