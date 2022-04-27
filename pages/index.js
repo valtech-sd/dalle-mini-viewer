@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
@@ -27,34 +27,26 @@ export async function getServerSideProps(context) {
 }
 
 export default function Home(props) {
-  console.log("PROPS", props.imageSrc);
-  // useEffect(() => {
-  //   fetch(
-  //     "https://884299288848248:AUB676yF644mn8O771ztWambF9A@detzng4ks@api.cloudinary.com/v1_1/detzng4ks/resources/search",
-  //     {
-  //       method: "GET",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify({
-  //         expression: "folder=dalle-mini",
-  //         sort_by: [{ uploaded_at: "desc" }],
-  //         max_results: 30,
-  //       }),
-  //     }
-  //   ).then((response) => {
-  //     if (!response.ok) {
-  //       throw Error("error!!!", JSON.stringify(response.statusText));
-  //     }
-  //     return response;
-  //   });
+  const [recipeTitle, setRecipeTitle] = useState("");
 
-  //   // cloudinary.v2.search
-  //   //   .expression("folder=dalle-mini")
-  //   //   .sort_by("uploaded_at", "desc")
-  //   //   .execute()
-  //   //   .then((result) => console.log(result));
-  // }, []);
+  useEffect(() => {
+    fetch(
+      `https://api.spoonacular.com/recipes/random?&number=1&apiKey=957083af550c433a81b9127d40cf869e`,
+      {
+        method: "GET",
+      }
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        if (data) {
+          setRecipeTitle(data.recipes.recipes[0].title);
+        }
+      })
+      .catch(() => {
+        console.log("error");
+      });
+  }, []);
+
   console.log(props);
   return (
     <>
