@@ -1,6 +1,6 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import JsonBigint from "json-bigint";
-import cloudinary from "cloudinary";
+import { Cloudinary } from "@cloudinary/url-gen";
 
 export default async function handler(req, res) {
   cloudinary.config({
@@ -8,7 +8,6 @@ export default async function handler(req, res) {
     api_key: "884299288848248",
     api_secret: "AUB676yF644mn8O771ztWambF9A",
   });
-  console.log("HIII");
 
   const REQUEST_TIMEOUT_SEC = 300000;
 
