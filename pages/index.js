@@ -54,7 +54,9 @@ export default function Home(props) {
   console.log(props);
   return (
     <>
-      <Head>{/* <meta httpEquiv="Refresh" content="30" /> */}</Head>
+      <Head>
+        <meta httpEquiv="Refresh" content="1200" />
+      </Head>
       <Row>
         <Column>
           <div
