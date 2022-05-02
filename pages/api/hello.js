@@ -1,7 +1,3 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import JsonBigint from "json-bigint";
-import cloudinary from "cloudinary";
-
 export default async function handler(req, res) {
   const characters = [
     "Superman",
@@ -27,11 +23,8 @@ export default async function handler(req, res) {
     "Tarzan",
     "Forrest Gump",
     "Big Bird",
-    "Tony Montana",
-    "Tony Soprano",
     "The Terminator",
     "Charlie Brown",
-    "E.T.",
     "Fred Flintstone",
     "Kermit the Frog",
     "Yoda",
@@ -44,16 +37,12 @@ export default async function handler(req, res) {
     "Willy Wonka",
     "The Hulk",
     "Scooby-Doo",
-    "Edward Scissorhands",
     "Eric Cartman",
     "Pikachu",
-    "Michael Scott",
     "Freddy Krueger",
-    "Captain America",
     "Bambi",
     "Ronald McDonald",
-    "Waldo/Wally",
-    "Buffy Summers",
+    "Waldo",
     "Wolverine",
     "Ron Burgundy",
     "Betty Boop",
@@ -64,44 +53,75 @@ export default async function handler(req, res) {
     "Sonic the Hedgehog",
   ];
 
-  const location = [
-    "in central park",
-    "on surface of the moon",
-    "at a baja beach",
-    "at a cabo beach",
-    ". clear skies with hot air balloon",
-    "on a mostly cloudy day",
-    "in a snowy blizzard",
-    "in the north pole",
-    "in the green hills of ireland",
-    "in the grand canyon",
-    "in the saharan desert",
-    "in a green jungle",
+  const paintingStyles = [
+    "painting in pop art style",
+    "painting in cubist style",
+    "painting in surrealist style",
+    "painting in the style of van gogh",
+    "painting in the style of claude monet",
+    "drawing",
+    "charcoal drawing",
+    "crayon drawing",
+    "chalk drawing",
+    "pencil sketch",
+    "pixel art illustration",
+    "illustration",
+    "sepia tone photograph",
+    "ukiyo-e print",
+    "cartoon",
+    "black and white photograph",
+    "wood engraving",
+    "postage stamp",
+    "poster",
+    "painting in pop art style",
   ];
 
-  var randomLocation = location[Math.floor(Math.random() * location.length)];
-  var randomCharacter =
+  const locations = [
+    "sitting in a field",
+    "sitting at a beach",
+    "sitting on the moon",
+    "sitting on a mountain",
+    "sitting under a waterfall",
+    "sitting in a fire",
+  ];
+
+  const timeOfDay = [
+    "at dusk",
+    "at dawn",
+    "at night",
+    "at sunrise",
+    "at twilight",
+    "at sunset",
+    "in the summer",
+  ];
+
+  const randomLocation =
+    locations[Math.floor(Math.random() * locations.length)];
+  const randomCharacter =
     characters[Math.floor(Math.random() * characters.length)];
+  const randomPaintingStyle =
+    paintingStyles[Math.floor(Math.random() * paintingStyles.length)];
+  const randomTimeOfDay =
+    timeOfDay[Math.floor(Math.random() * timeOfDay.length)];
 
-  const recipe = await fetch(
-    `https://api.spoonacular.com/recipes/random?&number=1&apiKey=957083af550c433a81b9127d40cf869e`,
-    {
-      method: "GET",
-    }
-  )
-    .then((response) => response.json())
-    .then((data) => {
-      if (data) {
-        return data.recipes[0].title;
-      }
-    })
-    .catch(() => {
-      console.log("error");
-    });
+  // const recipe = await fetch(
+  //   `https://api.spoonacular.com/recipes/random?&number=1&apiKey=957083af550c433a81b9127d40cf869e`,
+  //   {
+  //     method: "GET",
+  //   }
+  // )
+  //   .then((response) => response.json())
+  //   .then((data) => {
+  //     if (data) {
+  //       return data.recipes[0].title;
+  //     }
+  //   })
+  //   .catch(() => {
+  //     console.log("error");
+  //   });
 
-  console.log(recipe);
+  const textPrompt = `a ${randomPaintingStyle} of ${randomCharacter} ${randomLocation} ${randomTimeOfDay}`;
 
-  const queryStartTime = new Date();
   fetch("http://52.52.59.188:8080" + `/dalle`, {
     method: "POST",
     headers: {
@@ -109,56 +129,12 @@ export default async function handler(req, res) {
       mode: "no-cors",
     },
     body: JSON.stringify({
-      text: `${randomCharacter} ${randomLocation}. Happy ${randomCharacter}. ${randomLocation}.`,
+      text: textPrompt,
       num_images: 1,
     }),
   });
 
-  // const imageData = JsonBigint.parse(response);
-  // const fullImageData = `data:image/png;base64,${imageData}`;
-
-  // const imageData = data:image/png;base64,${JsonBigint.parse(
-  //   response["generatedImgs"]
-  // )}`;
-  // console.log("imageData", imageData);
-
-  // cloudinary.v2.uploader.upload(
-  //   fullImageData,
-  //   {
-  //     folder: "dalle-mini",
-  //     width: 1200,
-  //     height: 1200,
-  //     metadata: "mickey mouse eating a banana",
-  //   },
-  //   function (error, result) {
-  //     console.log("cloudinary response", result);
-  //   }
-  // );
-
   res.status(200).send({
-    currentPrompt: `TBD`,
+    currentPrompt: textPrompt,
   });
-
-  // try {
-  //   const result = await fetch("http://52.52.59.188:8080" + `/dalle`, {
-  //     method: "POST",
-  //     body: JSON.stringify({
-  //       text: "Pirates eating hot dogs on the sea",
-  //       num_images: 1,
-  //     }),
-  //   });
-  //   res.status(200).send(JsonBigint.parse(result));
-  // } catch (err) {
-  //   res.status(500).send({ error: "failed to fetch data" });
-  // }
-
-  // return {
-  //   executionTime:
-  //     Math.round(
-  //       ((new Date() - queryStartTime) / 1000 + Number.EPSILON) * 100
-  //     ) / 100,
-  //   generatedImgs: JsonBigint.parse(response),
-  // };
-
-  // res.status(200).json({ name: "John Dsssoe" });
 }

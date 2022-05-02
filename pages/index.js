@@ -3,6 +3,7 @@ import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
 import cloudinary from "cloudinary";
+import styled from "styled-components";
 
 export async function getServerSideProps(context) {
   let image;
@@ -31,6 +32,17 @@ export async function getServerSideProps(context) {
   };
 }
 
+const Row = styled.div`
+  display: flex;
+  width: 100%;
+  background-color: green;
+  height: auto;
+`;
+
+const QRContainer = styled.div`
+  position: absolute;
+`;
+
 export default function Home(props) {
   const [recipeTitle, setRecipeTitle] = useState("");
 
@@ -40,51 +52,55 @@ export default function Home(props) {
       <Head>
         <meta httpEquiv="Refresh" content="30" />
       </Head>
-      <div
-        style={{
-          position: "absolute",
-          left: "50%",
-          top: "50%",
-          transform: "translate(-50%, -50%)",
-        }}
-      >
-        <img
-          src={props.imageSrc}
+      <Row>
+        <div
           style={{
-            height: "800px",
-            width: "800px",
+            position: "absolute",
+            left: "50%",
+            top: "50%",
+            transform: "translate(-50%, -50%)",
           }}
-        />
-        <h1 style={{ color: "white", textAlign: "center" }}>
-          {props.description}
-        </h1>
-      </div>
-      <div
-        style={{
-          width: "200px",
-        }}
-      >
-        <Image
-          src="/qr-code.png"
-          width="100%"
-          height="100%"
-          layout="responsive"
-          objectFit="contain"
-        />
-      </div>
-      <div
-        style={{
-          width: "300px",
-        }}
-      >
-        <Image
-          src="/FS_Logo_White.png"
-          width="100%"
-          height="100%"
-          layout="responsive"
-          objectFit="contain"
-        />
-      </div>
+        >
+          <img
+            src={props.imageSrc}
+            style={{
+              height: "800px",
+              width: "800px",
+            }}
+          />
+          <h1 style={{ color: "white", textAlign: "center" }}>
+            {props.description}
+          </h1>
+        </div>
+        <QRContainer>
+          <div
+            style={{
+              width: "200px",
+            }}
+          >
+            <Image
+              src="/qr-code.png"
+              width="100%"
+              height="100%"
+              layout="responsive"
+              objectFit="contain"
+            />
+          </div>
+          <div
+            style={{
+              width: "300px",
+            }}
+          >
+            <Image
+              src="/FS_Logo_White.png"
+              width="100%"
+              height="100%"
+              layout="responsive"
+              objectFit="contain"
+            />
+          </div>
+        </QRContainer>
+      </Row>
     </>
   );
 }
