@@ -9,7 +9,7 @@ export async function getServerSideProps(context) {
   cloudinary.config({
     cloud_name: "detzng4ks",
     api_key: process.env.API_KEY_CLOUDINARY,
-    api_secret: "AUB676yF644mn8O771ztWambF9A",
+    api_secret: process.env.CLOUDINARY_SECRET,
   });
 
   const finalImage = await cloudinary.v2.search
@@ -38,7 +38,7 @@ export default function Home(props) {
   return (
     <>
       <Head>
-        <meta httpEquiv="Refresh" content="3600" />
+        <meta httpEquiv="Refresh" content="30" />
       </Head>
       <div
         style={{
@@ -58,6 +58,32 @@ export default function Home(props) {
         <h1 style={{ color: "white", textAlign: "center" }}>
           {props.description}
         </h1>
+      </div>
+      <div
+        style={{
+          width: "200px",
+        }}
+      >
+        <Image
+          src="/qr-code.png"
+          width="100%"
+          height="100%"
+          layout="responsive"
+          objectFit="contain"
+        />
+      </div>
+      <div
+        style={{
+          width: "300px",
+        }}
+      >
+        <Image
+          src="/FS_Logo_White.png"
+          width="100%"
+          height="100%"
+          layout="responsive"
+          objectFit="contain"
+        />
       </div>
     </>
   );

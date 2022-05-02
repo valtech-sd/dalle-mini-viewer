@@ -65,18 +65,18 @@ export default async function handler(req, res) {
   ];
 
   const location = [
-    "at central park",
+    "in central park",
     "on surface of the moon",
     "at a baja beach",
     "at a cabo beach",
-    ", clear skies with hot air balloon",
+    ". clear skies with hot air balloon",
     "on a mostly cloudy day",
-    "a snowy blizzard",
-    "the north pole",
-    "the green hills of ireland",
-    "the grand canyon",
-    "the saharan desert",
-    "a green jungle",
+    "in a snowy blizzard",
+    "in the north pole",
+    "in the green hills of ireland",
+    "in the grand canyon",
+    "in the saharan desert",
+    "in a green jungle",
   ];
 
   var randomLocation = location[Math.floor(Math.random() * location.length)];
@@ -109,7 +109,7 @@ export default async function handler(req, res) {
       mode: "no-cors",
     },
     body: JSON.stringify({
-      text: `${randomCharacter} ${randomLocation}`,
+      text: `${randomCharacter} ${randomLocation}. Happy ${randomCharacter}. ${randomLocation}.`,
       num_images: 1,
     }),
   });
@@ -136,7 +136,7 @@ export default async function handler(req, res) {
   // );
 
   res.status(200).send({
-    currentPrompt: `${randomCharacter}eating ${recipe} at ${randomLocation}`,
+    currentPrompt: `TBD`,
   });
 
   // try {
