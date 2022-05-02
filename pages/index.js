@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import Head from "next/head";
 import Image from "next/image";
-import styles from "../styles/Home.module.css";
 import cloudinary from "cloudinary";
 import styled from "styled-components";
 
@@ -34,13 +33,19 @@ export async function getServerSideProps(context) {
 
 const Row = styled.div`
   display: flex;
+  flex-direction: row;
+  justify-content: center;
   width: 100%;
-  background-color: green;
-  height: auto;
+  height: 100%;
 `;
 
-const QRContainer = styled.div`
-  position: absolute;
+const Column = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
 `;
 
 export default function Home(props) {
@@ -49,43 +54,9 @@ export default function Home(props) {
   console.log(props);
   return (
     <>
-      <Head>
-        <meta httpEquiv="Refresh" content="30" />
-      </Head>
+      <Head>{/* <meta httpEquiv="Refresh" content="30" /> */}</Head>
       <Row>
-        <div
-          style={{
-            position: "absolute",
-            left: "50%",
-            top: "50%",
-            transform: "translate(-50%, -50%)",
-          }}
-        >
-          <img
-            src={props.imageSrc}
-            style={{
-              height: "800px",
-              width: "800px",
-            }}
-          />
-          <h1 style={{ color: "white", textAlign: "center" }}>
-            {props.description}
-          </h1>
-        </div>
-        <QRContainer>
-          <div
-            style={{
-              width: "200px",
-            }}
-          >
-            <Image
-              src="/qr-code.png"
-              width="100%"
-              height="100%"
-              layout="responsive"
-              objectFit="contain"
-            />
-          </div>
+        <Column>
           <div
             style={{
               width: "300px",
@@ -99,7 +70,39 @@ export default function Home(props) {
               objectFit="contain"
             />
           </div>
-        </QRContainer>
+          <div
+            style={{
+              width: "200px",
+            }}
+          >
+            <Image
+              src="/qr-code.png"
+              width="100%"
+              height="100%"
+              layout="responsive"
+              objectFit="contain"
+            />
+          </div>
+          <div>
+            <div
+              style={{ color: "white", fontSize: "48px", paddingTop: "32px" }}
+            >
+              <span style={{ fontWeight: "bold" }}>Scan</span> to Lean More
+            </div>
+          </div>
+        </Column>
+        <Column>
+          <img
+            src={props.imageSrc}
+            style={{
+              height: "500px",
+              width: "500px",
+            }}
+          />
+          <h1 style={{ color: "white", textAlign: "center" }}>
+            {props.description}
+          </h1>
+        </Column>
       </Row>
     </>
   );
