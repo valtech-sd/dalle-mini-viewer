@@ -61,13 +61,13 @@ export default function Home(props) {
         <Column>
           <div
             style={{
-              width: "300px",
+              width: "200px",
             }}
           >
             <Image
               src="/FS_Logo_White.png"
-              width="100%"
-              height="100%"
+              width={1121}
+              height={478}
               layout="responsive"
               objectFit="contain"
             />
@@ -75,6 +75,7 @@ export default function Home(props) {
           <div
             style={{
               width: "200px",
+              paddingTop: "32px",
             }}
           >
             <Image
@@ -87,7 +88,7 @@ export default function Home(props) {
           </div>
           <div>
             <div
-              style={{ color: "white", fontSize: "48px", paddingTop: "32px" }}
+              style={{ color: "white", fontSize: "32px", paddingTop: "32px" }}
             >
               <span style={{ fontWeight: "bold" }}>Scan</span> to Lean More
             </div>

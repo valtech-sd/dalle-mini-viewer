@@ -122,7 +122,7 @@ export default async function handler(req, res) {
 
   const textPrompt = `a ${randomPaintingStyle} of ${randomCharacter} ${randomLocation} ${randomTimeOfDay}`;
 
-  fetch("http://52.52.59.188:8080" + `/dalle`, {
+  fetch("https://52.52.59.188:8080" + `/dalle`, {
     method: "POST",
     headers: {
       "Bypass-Tunnel-Reminder": "go",
