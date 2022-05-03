@@ -21,7 +21,7 @@ export default async function handler(req, res) {
         alt: result.resources[0].context.alt,
       };
     });
-  res.status(200).send({
+  res.status(200).json({
     imageData: finalImage,
   });
 }
