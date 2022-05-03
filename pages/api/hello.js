@@ -1,3 +1,5 @@
+// https://towardsdatascience.com/connecting-google-colab-to-an-amazon-ec2-instance-b61be9f9cf30
+
 export default async function handler(req, res) {
   const characters = [
     "Superman",
@@ -122,7 +124,7 @@ export default async function handler(req, res) {
 
   const textPrompt = `a ${randomPaintingStyle} of ${randomCharacter} ${randomLocation} ${randomTimeOfDay}`;
 
-  fetch("https://52.52.59.188:8080" + `/dalle`, {
+  fetch("http://52.52.59.188:8080" + `/dalle`, {
     method: "POST",
     headers: {
       "Bypass-Tunnel-Reminder": "go",
