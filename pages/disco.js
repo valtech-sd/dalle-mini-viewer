@@ -70,7 +70,6 @@ const ColumnLarge = styled.div`
   }
 `;
 
-console.log("test");
 const ImageGAN = styled.img`
   height: 506px;
   width: 800px;
@@ -79,6 +78,15 @@ const ImageGAN = styled.img`
   @media (max-width: 768px) {
     width: 400px;
     height: 253px;
+  }
+`;
+
+const Description = styled.h1`
+  color: white;
+  width: 800px;
+
+  @media (max-width: 768px) {
+    width: 360px;
   }
 `;
 
@@ -133,9 +141,7 @@ export default function Home(props) {
         </ColumnSmall>
         <ColumnLarge>
           <ImageGAN src={props.imageSrc} style={{}} />
-          <h1 style={{ color: "white", textAlign: "center", width: "800px" }}>
-            {props.description}
-          </h1>
+          <Description>{props.description}</Description>
         </ColumnLarge>
       </Row>
     </>

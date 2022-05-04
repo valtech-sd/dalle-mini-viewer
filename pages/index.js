@@ -81,6 +81,16 @@ const ImageGAN = styled.img`
   }
 `;
 
+const Description = styled.h1`
+  color: white;
+  text-align: left;
+  width: 500px;
+
+  @media (max-width: 768px) {
+    width: 360px;
+  }
+`;
+
 export default function Home(props) {
   const [recipeTitle, setRecipeTitle] = useState("");
 
@@ -132,9 +142,7 @@ export default function Home(props) {
         </ColumnSmall>
         <ColumnLarge>
           <ImageGAN src={props.imageSrc} style={{}} />
-          <h1 style={{ color: "white", textAlign: "center" }}>
-            {props.description}
-          </h1>
+          <Description>{props.description}</Description>
         </ColumnLarge>
       </Row>
     </>
