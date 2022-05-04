@@ -70,6 +70,7 @@ const ColumnLarge = styled.div`
   }
 `;
 
+console.log("test");
 const ImageGAN = styled.img`
   height: 506px;
   width: 800px;
