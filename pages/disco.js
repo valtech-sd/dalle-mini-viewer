@@ -13,7 +13,7 @@ export async function getServerSideProps(context) {
   });
 
   const finalImage = await cloudinary.v2.search
-    .expression("folder=dalle-mini")
+    .expression("folder=disco-diffusion")
     .sort_by("uploaded_at", "desc")
     .with_field("context")
     .execute()
@@ -71,13 +71,13 @@ const ColumnLarge = styled.div`
 `;
 
 const ImageGAN = styled.img`
-  height: 500px;
-  width: 500px;
+  height: 506px;
+  width: 800px;
   border-radius: 8px;
 
   @media (max-width: 768px) {
-    width: 320px;
-    height: 320px;
+    width: 400px;
+    height: 253px;
   }
 `;
 
@@ -132,7 +132,7 @@ export default function Home(props) {
         </ColumnSmall>
         <ColumnLarge>
           <ImageGAN src={props.imageSrc} style={{}} />
-          <h1 style={{ color: "white", textAlign: "center" }}>
+          <h1 style={{ color: "white", textAlign: "center", width: "800px" }}>
             {props.description}
           </h1>
         </ColumnLarge>

@@ -1,3 +1,19 @@
+@font-face {
+  font-family: "Futura";
+  src: url("/fonts/Futura.ttc");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Futura-Bold";
+  src: url("/fonts/FuturaStd-Heavy.otf");
+  font-style: bold;
+  font-weight: 700;
+  font-display: swap;
+}
+
 html,
 body {
   padding: 0;
@@ -13,4 +29,11 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+div,
+h1,
+h2,
+h3 {
+  font-family: Futura;
 }
