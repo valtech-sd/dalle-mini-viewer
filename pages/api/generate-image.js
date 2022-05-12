@@ -54,7 +54,6 @@ export default async function handler(req, res) {
     "Optimus Prime",
     "Sonic the Hedgehog",
   ];
-
   const paintingStyles = [
     "painting in pop art style",
     "painting in cubist style",
@@ -77,7 +76,6 @@ export default async function handler(req, res) {
     "poster",
     "painting in pop art style",
   ];
-
   const locations = [
     "sitting in a field",
     "sitting at a beach",
@@ -86,7 +84,6 @@ export default async function handler(req, res) {
     "sitting under a waterfall",
     "sitting in a fire",
   ];
-
   const timeOfDay = [
     "at dusk",
     "at dawn",
