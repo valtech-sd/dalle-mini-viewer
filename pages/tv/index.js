@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Head from "next/head";
 import Image from "next/image";
 import cloudinary from "cloudinary";
@@ -47,7 +48,7 @@ const ColumnSmall = styled.div`
   justify-content: center;
   align-items: center;
   @media (max-width: 768px) {
-    height: 300px;
+    height: 600px;
     width: 90%;
   }
 `;
@@ -108,6 +109,31 @@ export default function Home(props) {
               layout="responsive"
               objectFit="contain"
             />
+          </div>
+          <div
+            style={{
+              width: "200px",
+              paddingTop: "32px",
+            }}
+          >
+            <Image
+              src="/qr-code.png"
+              alt="future studio qr code"
+              width="100%"
+              height="100%"
+              layout="responsive"
+              objectFit="contain"
+            />
+          </div>
+          <div>
+            <div
+              style={{ color: "white", fontSize: "32px", paddingTop: "32px" }}
+            >
+              <span style={{ fontWeight: "bold", fontFamily: "Futura-Bold" }}>
+                Scan
+              </span>{" "}
+              to Lean More
+            </div>
           </div>
         </ColumnSmall>
         <ColumnLarge>

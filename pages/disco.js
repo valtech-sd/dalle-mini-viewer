@@ -1,11 +1,9 @@
-import { useEffect, useState } from "react";
 import Head from "next/head";
 import Image from "next/image";
 import cloudinary from "cloudinary";
 import styled from "styled-components";
 
 export async function getServerSideProps(context) {
-  let image;
   cloudinary.config({
     cloud_name: "detzng4ks",
     api_key: process.env.API_KEY_CLOUDINARY,
@@ -18,16 +16,14 @@ export async function getServerSideProps(context) {
     .with_field("context")
     .execute()
     .then((result) => {
-      console.log("RES");
       return {
         src: result.resources[0].url,
         alt: result.resources[0].context.alt,
       };
     });
-  console.log(finalImage);
 
   return {
-    props: { imageSrc: finalImage.src, description: finalImage.alt }, // will be passed to the page component as props
+    props: { imageSrc: finalImage.src, description: finalImage.alt },
   };
 }
 
@@ -91,9 +87,6 @@ const Description = styled.h1`
 `;
 
 export default function Home(props) {
-  const [recipeTitle, setRecipeTitle] = useState("");
-
-  console.log(props);
   return (
     <>
       <Head>
@@ -108,6 +101,7 @@ export default function Home(props) {
           >
             <Image
               src="/FS_Logo_White.png"
+              alt="future studio logo"
               width={1121}
               height={478}
               layout="responsive"
@@ -122,6 +116,7 @@ export default function Home(props) {
           >
             <Image
               src="/qr-code.png"
+              alt="future studio qr code"
               width="100%"
               height="100%"
               layout="responsive"
@@ -140,7 +135,7 @@ export default function Home(props) {
           </div>
         </ColumnSmall>
         <ColumnLarge>
-          <ImageGAN src={props.imageSrc} style={{}} />
+          <ImageGAN src={props.imageSrc} />
           <Description>{props.description}</Description>
         </ColumnLarge>
       </Row>
