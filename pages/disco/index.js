@@ -108,31 +108,6 @@ export default function Home(props) {
               objectFit="contain"
             />
           </div>
-          <div
-            style={{
-              width: "200px",
-              paddingTop: "32px",
-            }}
-          >
-            <Image
-              src="/qr-code.png"
-              alt="future studio qr code"
-              width="100%"
-              height="100%"
-              layout="responsive"
-              objectFit="contain"
-            />
-          </div>
-          <div>
-            <div
-              style={{ color: "white", fontSize: "32px", paddingTop: "32px" }}
-            >
-              <span style={{ fontWeight: "bold", fontFamily: "Futura-Bold" }}>
-                Scan
-              </span>{" "}
-              to Lean More
-            </div>
-          </div>
         </ColumnSmall>
         <ColumnLarge>
           <ImageGAN src={props.imageSrc} />
